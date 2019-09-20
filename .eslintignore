@@ -1,0 +1,4 @@
+build/*.js
+config/*.js
+src/directive/el-dragDialog/*.js
+src/assets/kmedia/*.js

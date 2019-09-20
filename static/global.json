@@ -1,0 +1,19 @@
+{
+  "AJAX_BASE_URL": "//test.ctsp.kedacom.com/cvf",
+  "AJAX_AUTH_URL": "//test.ctsp.kedacom.com/cloud-rbac",
+  "SOCKET_URL": "//test.ctsp.kedacom.com/cvf/endpoint",
+  "MAP_COORDS": [ [120.0001, 35.0001], [120.0001, 30.0001], [125.0001, 30.0001], [125.0001, 35.0001], [120.0001, 35.0001]],
+  "SHOW_USER_MANUAL": true,
+  "AJAX_TIMEOUT": "20000",
+  "showMultipleMode": true,
+  "enableHttps": false,
+  "HOME_TREE_SHOW_LEVEL": 1,
+  "MAP_TREE_SHOW_LEVEL": 1,
+  "BE_VERSION_CODE": "U1.1.232",
+  "FE_VERSION_CODE": "A1.1.2.7",
+  "LOG_FILE_BASE_URL": "//test.ctsp.kedacom.com/resource/cvf",
+  "ADMINISTRATIVE_CODE": "320500",
+  "DEVICE_SERVER": "//test.ctsp.kedacom.com/kdall-front",
+  "HAS_DMS": false,
+  "GROUP_MAX_LENGTH": 200
+}
