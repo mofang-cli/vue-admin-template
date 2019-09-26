@@ -1,4 +1,4 @@
-# kfront-base-vue
+# vue-admin-template
 
 > 这个项目是作为vue项目开发的一个公用项目模板
 > 这里包括了项目开发所需准备的初步准备工作
