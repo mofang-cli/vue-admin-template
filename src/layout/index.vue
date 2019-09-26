@@ -5,6 +5,7 @@
         <router-view></router-view>
       </v-body>
       <v-footer></v-footer>
+      <component></component>
     </div>
 </template>
 
@@ -25,10 +26,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .page-wrapper {
-    width:100%;
-    height:100%;
-  }
   #template {
       font-size: 14px;
   }

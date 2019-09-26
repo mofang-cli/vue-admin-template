@@ -47,27 +47,3 @@
     }
   }
 </script>
-<style lang="scss">
-  .header{
-    min-width: 1280px;
-    height: 64px;
-    background-color: #0e4aaa;
-    padding: 0 10px 0 0;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    z-index: 2001;
-    .logo{
-      a{
-        color: #fff;
-        font-size: 16px;
-        img{
-          height: 34px;
-          margin-left: 24px;
-        }
-      }
-    }
-  }
-</style>
