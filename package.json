@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "author": "weisen <weisen@kedacom.com>",
   "private": true,
+  "description": "",
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.dev.conf.js",
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js",
@@ -96,6 +97,16 @@
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verifyCommitMsg.js"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
@@ -105,11 +116,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "description": "",
   "main": ".eslintrc.js",
-  "repository": {
-    "type": "git",
-    "url": "http://gitlab.ctsp.kedacom.com/kfront/CloudVideoFramework.git"
-  },
   "license": "ISC"
 }
