@@ -23,6 +23,8 @@
 vue2 + vuex + vue-router + axios + webpack + ES5/6/7 + scss
 
 ## 目录结构
+
+```
 .
 ├── build                                       // webpack配置文件
 ├── config                                      // 项目打包路径
@@ -62,3 +64,6 @@ vue2 + vuex + vue-router + axios + webpack + ES5/6/7 + scss
 ├── static                                      // 项目公共静态资源，如图片等
 │   └──images                                   // 项目公共图片资源
 ├── index.html                                  // 入口html文件
+
+
+```
