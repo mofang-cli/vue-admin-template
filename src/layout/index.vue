@@ -5,7 +5,6 @@
         <router-view></router-view>
       </v-body>
       <v-footer></v-footer>
-      <component></component>
     </div>
 </template>
 

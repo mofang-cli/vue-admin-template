@@ -1,11 +1,11 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const path = require('path')
+const utils = require('./utils')
+const webpack = require('webpack')
+const config = require('../config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const devCondition = process.env.DEV_CONDITION
 // add hot-reload related code to entry chunks
 // Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -35,17 +35,5 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new FriendlyErrorsPlugin()
   ],
-  devServer: {
-    port: 8080,
-    open: true,
-    hot: true,
-    clientLogLevel: 'silent',
-    noInfo: true,
-    https: false,
-    progress: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  }
+  devServer: config.dev.devServer
 })

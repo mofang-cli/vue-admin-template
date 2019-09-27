@@ -1,9 +1,8 @@
-var path = require('path')
-var utils = require('./utils')
-var config = require('../config')
-// var vueLoaderConfig = require('./vue-loader.conf')
+const path = require('path')
+const utils = require('./utils')
+const config = require('../config')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-var webpack = require('webpack')
+const webpack = require('webpack')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }

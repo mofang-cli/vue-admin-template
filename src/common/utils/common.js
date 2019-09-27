@@ -808,8 +808,10 @@ export default {
     }
   },
   arrDeepCopy (source) {
-    var sourceCopy = []
-    for (var item in source) { sourceCopy[item] = typeof source[item] === 'object' ? this.arrDeepCopy(source[item]) : source[item] }
+    let sourceCopy = []
+    for (let item in source) {
+      sourceCopy[item] = typeof source[item] === 'object' ? this.arrDeepCopy(source[item]) : source[item]
+    }
     return sourceCopy
   }
 }

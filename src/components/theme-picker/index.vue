@@ -30,17 +30,6 @@
       if (theme && theme.indexOf('#') > -1) {
         this.theme = theme
         this.changeSkin(this.theme)
-      } else {
-        this.requests.user.GET_THEME_COLOR()
-          .then(res => {
-            if (res.result && res.result.themeColor) {
-              this.theme = res.result.themeColor
-              this.changeSkin(this.theme)
-            } else {
-              this.theme = this.themeArr[0]
-              this.changeSkin(this.theme)
-            }
-          })
       }
     },
     data () {
@@ -53,21 +42,9 @@
     methods: {
       checkColor (color) {
         this.theme = color
-        this.requests.user.SET_THEME_COLOR({themeColor: this.theme})
-          .then(res => {
-            if (res.result && res.result.length > 0) {
-              this.theme = color
-              this.changeSkin(this.theme)
-              this.beforeClose()
-            } else {
-              this.$message.warning('主题色切换失败')
-              this.beforeClose()
-            }
-          })
-          .catch(() => {
-            this.$message.warning('主题色切换失败')
-            this.beforeClose()
-          })
+        this.theme = color
+        this.changeSkin(this.theme)
+        this.beforeClose()
       },
       changeSkin (theme) {
         localStorage.setItem('cvf_theme', theme)

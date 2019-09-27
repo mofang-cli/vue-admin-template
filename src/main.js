@@ -1,5 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import getRouter from './router/router'
@@ -27,7 +25,7 @@ Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 // 全局注册搜索组件
 Vue.component('searchBar', searchBar)
 
-// 全局混入通用utils和网络请求
+// 全局混入通用utils
 Vue.mixin({
   data () {
     return {
@@ -45,6 +43,9 @@ Vue.mixin({
 })
 
 let globalConfigFile = 'static/global.json'
+if (process.devCondition) {
+  globalConfigFile = `static/global-${process.devCondition}.json`
+}
 
 axios.get(globalConfigFile).then((res) => {
   Vue.prototype.g_Config = res

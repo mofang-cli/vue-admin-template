@@ -17,7 +17,7 @@ export default{
 
     // if (binding.hasOwnProperty('value') && binding.value) {
     //   setTimeout(() => {
-    //     var winHeight = document.body.clientHeight - dragDom.clientHeight - 20
+    //     let winHeight = document.body.clientHeight - dragDom.clientHeight - 20
     //     dragDom.style.top = winHeight + 'px'
     //     dragDom.style.left = '320px'
     //     dragDom.style.margin = '0'
@@ -25,7 +25,7 @@ export default{
     // }
 
     dialogHeaderEl.onmousedown = (e) => {
-      if (e.target.classList.contains('el-icon-close') || e.target.classList.contains('del-multi-lives') ) {
+      if (e.target.classList.contains('el-icon-close') || e.target.classList.contains('del-multi-lives')) {
         return false
       }
       // 鼠标按下，计算当前元素距离可视区的距离
@@ -49,11 +49,11 @@ export default{
       let styT = getStyle(dragDom, 'top')
 
       if (styL.includes('%')) {
-        styL = +document.body.clientWidth * (+styL.replace(/\%/g, '') / 100)
-        styT = +document.body.clientHeight * (+styT.replace(/\%/g, '') / 100)
+        styL = +document.body.clientWidth * (+styL.replace(/%/g, '') / 100)
+        styT = +document.body.clientHeight * (+styT.replace(/%/g, '') / 100)
       } else {
-        styL = +styL.replace(/\px/g, '')
-        styT = +styT.replace(/\px/g, '')
+        styL = +styL.replace(/px/g, '')
+        styT = +styT.replace(/px/g, '')
       }
 
       document.onmousemove = function (e) {

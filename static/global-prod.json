@@ -1,0 +1,18 @@
+{
+  "AJAX_BASE_URL": "http://dev.ctsp.kedacom.com/cvf",
+  "AJAX_AUTH_URL": "http://dev.ctsp.kedacom.com/cloud-rbac",
+  "hostPath": "/",
+  "supportWebRTC": true,
+  "isPoliceSituation": false,
+  "showCases": false,
+  "showMultipleMode": true,
+  "livebroadcast": false,
+  "SOCKET_URL": "ws://10.79.0.222:9001/cvf/websocket/socketServer.do",
+  "AJAX_TIMEOUT": "20000",
+  "BASE_IMG_URL": "",
+  "KEY_FILE_SIGN": false
+
+
+
+
+}
