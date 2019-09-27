@@ -20,6 +20,7 @@
       vFooter: footer
     },
     created () {
+      console.log(this.utils.regexp.ip)
     }
   }
 </script>

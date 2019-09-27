@@ -11,8 +11,8 @@ import axios from 'axios'
 import moment from 'moment'
 import i18n from './lang'
 import { sync } from 'vuex-router-sync'
-import utils from '@/common/utils'
 import searchBar from '@/components/searchBar/index'
+import { global } from '@/mixin/global'
 
 if (process.env.NODE_ENV === 'development') {
   // require('./mock/index')
@@ -25,22 +25,8 @@ Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 // 全局注册搜索组件
 Vue.component('searchBar', searchBar)
 
-// 全局混入通用utils
-Vue.mixin({
-  data () {
-    return {
-    }
-  },
-  filters: {
-  },
-  computed: {
-  },
-  methods: {
-    utils () {
-      return utils
-    }
-  }
-})
+// 全局混入通用
+Vue.mixin(global)
 
 let globalConfigFile = 'static/global.json'
 if (process.devCondition) {
