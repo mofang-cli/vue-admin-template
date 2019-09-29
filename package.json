@@ -11,7 +11,8 @@
     "dev-prod": "cross-env DEV_CONDITION=prod webpack-dev-server --config build/webpack.dev.conf.js",
     "build": "node build/build.js",
     "analyze": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint ./src",
+    "lint-fix": "eslint --fix ./src"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",

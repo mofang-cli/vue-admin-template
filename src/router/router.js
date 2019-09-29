@@ -4,21 +4,22 @@ import store from '../store/store'
 import Error401 from '@/page/error/error401'
 import Error403 from '@/page/error/error403'
 import Error404 from '@/page/error/error404'
-import Index from '@/layout/index'
+import Layout from '@/layout/index'
 import Test from '@/page/test'
 
 Vue.use(Router)
-export const getRoutes = function (defaultRouter) {
+export const getRoutes = function () {
   return [
     {
       path: '/test',
-      name: 'test',
-      component: Test
+      name: 'Test页面',
+      component: Test,
+      meta: {requireAuth: true, sign: 'TEST_PAGE', showMenu: true}
     }
   ]
 }
 
-const getRouter = function (defaultRouter) {
+const getRouter = function (defaultRouter = '') {
   const router = new Router({
     mode: 'hash',
     routes: [
@@ -43,7 +44,8 @@ const getRouter = function (defaultRouter) {
 	    },
       {
         path: '/',
-        component: Index,
+        component: Layout,
+        redirect: defaultRouter,
         children: getRoutes(defaultRouter)
       }
     ]
@@ -53,7 +55,11 @@ const getRouter = function (defaultRouter) {
     // 取消上一个界面未完成请求
     let cancelAxios = store.getters.getCancelAxios
     cancelAxios.forEach(cancel => { cancel() })
-    store.commit('initCancelAxios')
+    store.commit('clearCancelAxios')
+    // 根据路由修改页面title
+    if (to.name) {
+      document.title = to.name
+    }
 	  next()
   })
   return router

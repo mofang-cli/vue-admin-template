@@ -34,7 +34,42 @@
     },
     data () {
       return {
-        menuList: []
+        menuList: [
+          {
+            'children': [
+              {
+                'fields': [],
+                'icon': '',
+                'id': '2c94cea865470fac016556907cc7004c',
+                'level': 2,
+                'method': '',
+                'name': 'Page1',
+                'parent': null,
+                'parentId': '2c94cebe651e999701653677a4ff0031',
+                'path': 'mmji-ixkm',
+                'sign': 'RM_VIEW_RESOURCE',
+                'sortIndex': 2,
+                'type': '10',
+                'url': '/viewResource'
+              }
+            ],
+            'fields': [
+
+            ],
+            'icon': '',
+            'id': '2c94cebe651e999701653677a4ff0031',
+            'level': 1,
+            'method': '',
+            'name': 'Module1',
+            'parent': null,
+            'parentId': '',
+            'path': 'mmji',
+            'sign': 'RESOURCE',
+            'sortIndex': 4,
+            'type': '10',
+            'url': ''
+          }
+        ]
       }
     },
     computed: {
@@ -45,6 +80,10 @@
     watch: {
     },
     methods: {
+      // 判断是否存在子集
+      hasChild (obj, key = 'children') {
+        return obj[key] && Array.isArray(obj[key]) && obj[key].length
+      }
     }
   }
 </script>

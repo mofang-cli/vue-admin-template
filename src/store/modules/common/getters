@@ -1,0 +1,5 @@
+export default {
+  getCancelAxios: state => {
+    return state.cancelAxios
+  }
+}

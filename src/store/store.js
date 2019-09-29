@@ -12,22 +12,12 @@ if (process.env.NODE_ENV === 'development') {
 
 const store = new Vuex.Store({
   state: {
-    cancelAxios: [] // 存放需要请求的cancelToken
   },
   mutations: {
-    setCancelAxios (state, func) {
-      state.cancelAxios.push(func)
-    },
-    initCancelAxios (state) {
-      state.cancelAxios = []
-    }
   },
   actions: {
   },
   getters: {
-    getCancelAxios: state => {
-      return state.cancelAxios
-    }
   },
   modules: {
     common
