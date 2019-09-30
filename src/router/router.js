@@ -8,59 +8,61 @@ import Layout from '@/layout/index'
 import Test from '@/page/test'
 
 Vue.use(Router)
-export const getRoutes = function () {
+export const getRoutes = function() {
   return [
     {
       path: '/test',
       name: 'Test页面',
       component: Test,
-      meta: {requireAuth: true, sign: 'TEST_PAGE', showMenu: true}
-    }
+      meta: { requireAuth: true, sign: 'TEST_PAGE', showMenu: true },
+    },
   ]
 }
 
-const getRouter = function (defaultRouter = '') {
+const getRouter = function(defaultRouter = '') {
   const router = new Router({
     mode: 'hash',
     routes: [
-	    {
-		    path: '/error401',
-		    name: 'error401',
-		    component: Error401
-	    },
-	    {
-		    path: '/error403',
-		    name: 'error403',
-		    component: Error403
-	    },
-	    {
-		    path: '/error404',
-		    name: 'error404',
-		    component: Error404
-	    },
-	    {
-		    path: '*',
-		    component: Error404
-	    },
+      {
+        path: '/error401',
+        name: 'error401',
+        component: Error401,
+      },
+      {
+        path: '/error403',
+        name: 'error403',
+        component: Error403,
+      },
+      {
+        path: '/error404',
+        name: 'error404',
+        component: Error404,
+      },
+      {
+        path: '*',
+        component: Error404,
+      },
       {
         path: '/',
         component: Layout,
         redirect: defaultRouter,
-        children: getRoutes(defaultRouter)
-      }
-    ]
+        children: getRoutes(defaultRouter),
+      },
+    ],
   })
   /* eslint-disable no-new */
   router.beforeEach((to, from, next) => {
     // 取消上一个界面未完成请求
     let cancelAxios = store.getters.getCancelAxios
-    cancelAxios.forEach(cancel => { cancel() })
+    cancelAxios.forEach(cancel => {
+      cancel()
+    })
     store.commit('clearCancelAxios')
     // 根据路由修改页面title
     if (to.name) {
       document.title = to.name
     }
-	  next()
+    next()
   })
   return router
 }

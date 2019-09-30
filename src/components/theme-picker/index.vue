@@ -20,6 +20,7 @@
 <script>
   const ORIGINAL_THEME = '#409EFF'
   import themeChalk from './themeElementUi'
+
   export default {
     props: {
       visible: Boolean,
@@ -87,7 +88,7 @@
           })
         const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
         styles.forEach(style => {
-          const { innerText } = style
+          const {innerText} = style
           if (typeof innerText !== 'string') return
           style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
         })
@@ -181,9 +182,9 @@
     top: 75px;
     margin-left: -50px;
     background: #fff;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.20);
     border-radius: 4px;
-    &:after{
+    &:after {
       content: " ";
       display: block;
       position: absolute;

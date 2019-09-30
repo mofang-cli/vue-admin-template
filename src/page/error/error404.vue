@@ -1,12 +1,12 @@
 <template>
   <div class="box">
 
-  <div class="error-wrapper">
-    <img :src="imgSrc"/>
-    <h3>{{copywriter}}</h3>
-    <el-button type="primary" @click="toPrevPage">{{buttonText}}</el-button>
-  </div>
+    <div class="error-wrapper">
+      <img :src="imgSrc"/>
+      <h3>{{copywriter}}</h3>
+      <el-button type="primary" @click="toPrevPage">{{buttonText}}</el-button>
     </div>
+  </div>
 </template>
 <script>
   import imgSrc404 from '@/assets/images/error/pic_01_404.png'
@@ -45,16 +45,16 @@
   }
 </script>
 <style scoped lang="scss">
-  .error-wrapper{
+  .error-wrapper {
     padding: 50px 0 50px;
     display: block;
     text-align: center;
-    img{
+    img {
       padding-left: 50px;
       width: 1039px;
       height: 303px;
     }
-    h3{
+    h3 {
       margin: 14px auto 50px;
       font-size: 18px;
       color: #467BB7;

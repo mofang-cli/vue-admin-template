@@ -1,5 +1,5 @@
-export default{
-  bind (el, binding, vnode) {
+export default {
+  bind(el, binding, vnode) {
     const dialogHeaderEl = el.querySelector('.el-dialog__header')
     const dragDom = el.querySelector('.el-dialog')
 
@@ -7,7 +7,7 @@ export default{
     dragDom.style.cssText += ';top:0px;'
 
     // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
-    const getStyle = (function () {
+    const getStyle = (function() {
       if (window.document.currentStyle) {
         return (dom, attr) => dom.currentStyle[attr]
       } else {
@@ -24,8 +24,11 @@ export default{
     //   })
     // }
 
-    dialogHeaderEl.onmousedown = (e) => {
-      if (e.target.classList.contains('el-icon-close') || e.target.classList.contains('del-multi-lives')) {
+    dialogHeaderEl.onmousedown = e => {
+      if (
+        e.target.classList.contains('el-icon-close') ||
+        e.target.classList.contains('del-multi-lives')
+      ) {
         return false
       }
       // 鼠标按下，计算当前元素距离可视区的距离
@@ -56,20 +59,20 @@ export default{
         styT = +styT.replace(/px/g, '')
       }
 
-      document.onmousemove = function (e) {
+      document.onmousemove = function(e) {
         e.stopPropagation()
         // 通过事件委托，计算移动的距离
         let left = e.clientX - disX
         let top = e.clientY - disY
 
         // 边界处理
-        if (-(left) > minDragDomLeft) {
+        if (-left > minDragDomLeft) {
           left = -minDragDomLeft
         } else if (left > maxDragDomLeft) {
           left = maxDragDomLeft
         }
 
-        if (-(top) > minDragDomTop) {
+        if (-top > minDragDomTop) {
           top = -minDragDomTop
         } else if (top > maxDragDomTop) {
           top = maxDragDomTop
@@ -87,7 +90,7 @@ export default{
       //   document.onmouseup = null
       // }
 
-      document.onmouseup = function (e) {
+      document.onmouseup = function(e) {
         e.stopPropagation()
         document.onmousemove = null
         document.onmouseup = null
@@ -99,5 +102,5 @@ export default{
     //   document.onmousemove = null
     //   document.onmouseup = null
     // }
-  }
+  },
 }

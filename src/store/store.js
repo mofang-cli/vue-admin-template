@@ -11,17 +11,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const store = new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  getters: {
-  },
+  state: {},
+  mutations: {},
+  actions: {},
+  getters: {},
   modules: {
-    common
+    common,
   },
-  plugins
+  plugins,
 })
 export default store

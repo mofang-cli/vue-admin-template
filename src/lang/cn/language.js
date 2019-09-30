@@ -161,12 +161,12 @@ export const pub = {
   RELATED_VIDEO: '查看对应视频',
   LICENSE: '许可到期时间：{0}',
   LICENSE_WILL_INVALID: '平台试用剩余时间{0}天，请联系我们获得正式使用许可',
-  LICENSE_IS_INVALID: '平台试用已到期，请联系我们获得正式使用许可'
+  LICENSE_IS_INVALID: '平台试用已到期，请联系我们获得正式使用许可',
 }
 
 export const network = {
   NETWORK_ERROR: '网络异常，请检查当前互联网状态',
-  REQUEST_FAILED: '接口请求异常'
+  REQUEST_FAILED: '接口请求异常',
 }
 
 /**
@@ -183,7 +183,7 @@ export const notice = {
   DOWNLOAD_SUCCESS: '下载成功',
   DOWNLOAD_FAILD: '下载失败',
   SAVE_SUCCESS: '保存成功',
-  SAVE_FAILD: '保存失败'
+  SAVE_FAILD: '保存失败',
 }
 
 export const upload = {
@@ -193,7 +193,7 @@ export const upload = {
   UPLOAD_VIDEO_SIZE_LIMIT: '上传视频大小不能超过',
   UPLOAD_VIDEO_NUMBER_LIMIT: '每次只能上传一个视频，请删除后重试',
   UPLOAD_VIDEO_SUCCESS: '视频导入成功,请稍后查看',
-  PLEASE_CORRECT_FILE_TYPE: '请上传正确的excel格式'
+  PLEASE_CORRECT_FILE_TYPE: '请上传正确的excel格式',
 }
 
 /**
@@ -207,7 +207,7 @@ export const errorPage = {
   LOG_OUT_SYSTEM: '退出系统',
   NO_PAGE: '抱歉，您访问的页面找不到了～',
   SERVER_500: '抱歉，当前服务器错误～',
-  RETURN_INDEX: '返回首页'
+  RETURN_INDEX: '返回首页',
 }
 
 export default {

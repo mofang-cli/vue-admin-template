@@ -1,14 +1,12 @@
 import utils from '@/common/utils'
+
 export const global = {
-  data () {
+  data() {
     return {
-      utils
+      utils,
     }
   },
-  filters: {
-  },
-  computed: {
-  },
-  methods: {
-  }
+  filters: {},
+  computed: {},
+  methods: {},
 }

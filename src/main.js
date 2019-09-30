@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
   // require('./mock/index')
 }
 
-Vue.use(Element, {i18n: (key, value) => i18n.t(key, value)})
+Vue.use(Element, { i18n: (key, value) => i18n.t(key, value) })
 
 Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 
@@ -33,17 +33,18 @@ if (process.devCondition) {
   globalConfigFile = `static/global-${process.devCondition}.json`
 }
 
-axios.get(globalConfigFile).then((res) => {
+axios.get(globalConfigFile).then(res => {
   Vue.prototype.g_Config = res
   window.ajaxBaseUrl = res['AJAX_BASE_URL']
   let router = getRouter()
   sync(store, router)
-	return new Vue({ // eslint-disable-line
-		el: '#app',
-		router,
-		store,
-		i18n,
-		template: '<App/>',
-		components: { App }
-	})
+  return new Vue({
+    // eslint-disable-line
+    el: '#app',
+    router,
+    store,
+    i18n,
+    template: '<App/>',
+    components: { App },
+  })
 })

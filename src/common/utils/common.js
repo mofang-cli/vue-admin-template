@@ -1,5 +1,6 @@
 import i18n from '../../lang'
-import {Message} from 'element-ui'
+import { Message } from 'element-ui'
+
 export default {
   DEBUG_TOGGLE: true,
   /**
@@ -9,7 +10,7 @@ export default {
    * 第一个参数是布尔值 默认不填写为:false 当值为true则使用深拷贝
    * @return new Object gather
    */
-  extends () {
+  extends() {
     let options
     let name
     let src
@@ -32,14 +33,18 @@ export default {
       --i
     }
     for (; i < length; i++) {
-      if ((options = arguments[ i ]) != null) {
+      if ((options = arguments[i]) != null) {
         for (name in options) {
-          src = target[ name ]
-          copy = options[ name ]
+          src = target[name]
+          copy = options[name]
           if (target === copy) {
             continue
           }
-          if (deep && copy && (this.isPlainObject(copy) || (copyIsArray = this.isArray(copy)))) {
+          if (
+            deep &&
+            copy &&
+            (this.isPlainObject(copy) || (copyIsArray = this.isArray(copy)))
+          ) {
             if (copyIsArray) {
               copyIsArray = false
               clone = src && this.isArray(src) ? src : []
@@ -48,7 +53,7 @@ export default {
             }
             target[name] = this.extends(deep, clone, copy)
           } else if (copy !== undefined) {
-            target[ name ] = copy
+            target[name] = copy
           }
         }
       }
@@ -60,12 +65,18 @@ export default {
    * @param  {[type]}  obj
    * @return {Boolean}
    */
-  isPlainObject (obj) {
+  isPlainObject(obj) {
     if (this.type(obj) !== 'object' || obj.nodeType || this.isWindow(obj)) {
       return false
     }
     try {
-      if (obj.constructor && !Object.prototype.hasOwnProperty.call(obj.constructor.prototype, 'isPrototypeOf')) {
+      if (
+        obj.constructor &&
+        !Object.prototype.hasOwnProperty.call(
+          obj.constructor.prototype,
+          'isPrototypeOf'
+        )
+      ) {
         return false
       }
     } catch (e) {
@@ -78,18 +89,20 @@ export default {
    * @param  obj
    * @return 返回的是由Object toString返回的格式 如 [Object String] [Object Object]
    */
-  type (obj) {
+  type(obj) {
     if (obj == null) {
       return String(obj)
     }
-    return typeof obj === 'object' || typeof obj === 'function' ? Object.prototype[Object.prototype.toString.call(obj)] || 'object' : typeof obj
+    return typeof obj === 'object' || typeof obj === 'function'
+      ? Object.prototype[Object.prototype.toString.call(obj)] || 'object'
+      : typeof obj
   },
   /**
    * 判断是否window对象
    * @param  {[type]}  obj
    * @return {Boolean}
    */
-  isWindow (obj) {
+  isWindow(obj) {
     return obj != null && obj === obj.window
   },
   /**
@@ -99,7 +112,7 @@ export default {
    * @param  {[type]} i    用来搜索数组队列，默认值为0。
    * @return {[type]} 未找到返回-1，否则返回位置下标
    */
-  inArray (elem, arr, i) {
+  inArray(elem, arr, i) {
     return arr == null ? -1 : Array.prototype.indexOf.call(arr, elem, i)
   },
   /**
@@ -112,7 +125,7 @@ export default {
    * @param  obj
    * @return {Boolean}
    */
-  isFunction (obj) {
+  isFunction(obj) {
     return this.type(obj) === 'function'
   },
   /**
@@ -120,7 +133,7 @@ export default {
    * @param  {[type]} obj
    * @return {[Boolean]}
    */
-  isNumeric: function (obj) {
+  isNumeric: function(obj) {
     return !isNaN(parseFloat(obj)) && isFinite(obj)
   },
   /**
@@ -130,19 +143,19 @@ export default {
    * date('时间戳').getTime() 获取时间戳
 
    * date('String' or number).format('string') 格式化日期
-     date('1978-01-01').format('Y-m') //1978-01
+   date('1978-01-01').format('Y-m') //1978-01
 
    * date('时间差').timeset() 获取计算后的时间
-     date(301,'s').timeset() //{year:0,month:0,day:0,hour:0,minute:6,second:1}
+   date(301,'s').timeset() //{year:0,month:0,day:0,hour:0,minute:6,second:1}
 
    * date('时间差').state() 获取当前时间状态
-     date('301','s').state //{minute:6}=>6分钟前
+   date('301','s').state //{minute:6}=>6分钟前
 
    * date(number)._year|_month|_day|_hour|_minute|_second() 将数字转化为若干年|月|日........
 
    *** 继承自 new Date() 可使用于原生date方法 : date('xxxx').getFullYear()...
    */
-  date () {
+  date() {
     console.argu
     // 格式化目标
     let target = arguments[0] || new Date().getTime()
@@ -155,14 +168,14 @@ export default {
        * 初始化
        @param target 日期/时间戳/时间差
        */
-      init (target) {
+      init(target) {
         this.target = target / second
         return this
       },
       /**
        * 日期时间参数
        */
-      data () {
+      data() {
         let second = 1
         let minute = 60 * second
         let hour = minute * 60
@@ -179,22 +192,36 @@ export default {
             day: day,
             halfamonth: halfamonth,
             month: month,
-            year: year
+            year: year,
           },
           // 转义列表
           trope: {
-            'Y': this.getFullYear(),
-            'y': this.getFullYear(),
-            'M': this.getMonth() + 1,
-            'm': this.getMonth() + 1 < 10 ? '0' + (this.getMonth() + 1) : this.getMonth() + 1,
-            'D': this.getDate(),
-            'd': this.getDate() < 10 ? '0' + this.getDate() : this.getDate(),
-            'H': this.getHours() < 10 ? '0' + this.getHours() : this.getHours(),
-            'h': this.getHours() % 12 === 0 ? 12 : (this.getHours() % 12 < 10 ? '0' + this.getHours() % 12 : this.getHours() % 12),
-            'I': this.getMinutes(),
-            'i': this.getMinutes() < 10 ? '0' + this.getMinutes() : this.getMinutes(),
-            'S': this.getSeconds(),
-            's': this.getSeconds() < 10 ? '0' + this.getSeconds() : this.getSeconds()
+            Y: this.getFullYear(),
+            y: this.getFullYear(),
+            M: this.getMonth() + 1,
+            m:
+              this.getMonth() + 1 < 10
+                ? '0' + (this.getMonth() + 1)
+                : this.getMonth() + 1,
+            D: this.getDate(),
+            d: this.getDate() < 10 ? '0' + this.getDate() : this.getDate(),
+            H: this.getHours() < 10 ? '0' + this.getHours() : this.getHours(),
+            h:
+              this.getHours() % 12 === 0
+                ? 12
+                : this.getHours() % 12 < 10
+                ? '0' + (this.getHours() % 12)
+                : this.getHours() % 12,
+            I: this.getMinutes(),
+            i:
+              this.getMinutes() < 10
+                ? '0' + this.getMinutes()
+                : this.getMinutes(),
+            S: this.getSeconds(),
+            s:
+              this.getSeconds() < 10
+                ? '0' + this.getSeconds()
+                : this.getSeconds(),
           },
           // 数字化列表
           timeset: {
@@ -203,8 +230,8 @@ export default {
             day: this.count(day),
             hour: this.count(hour),
             minute: this.count(minute),
-            second: this.count(1)
-          }
+            second: this.count(1),
+          },
         }
       },
       /**
@@ -212,7 +239,7 @@ export default {
        * @param  {[type]} u [description]
        * @return {[type]}   [description]
        */
-      count (time) {
+      count(time) {
         return Math.floor(Math.abs(this.target / time))
       },
       /**
@@ -220,11 +247,14 @@ export default {
        * @param  {[String]} order 带有转义意义的字符串 如 "Y-m-d H:i:s" "M-D"
        * @return {[String or Object Date]}  返回转义后的时间或本对象
        */
-      format (order) {
+      format(order) {
         try {
           let fm = '' + order
           for (let per in this.data().trope) {
-            fm = (per && new RegExp(per).test(fm)) ? fm.replace(per, this.data().trope[per]) : fm
+            fm =
+              per && new RegExp(per).test(fm)
+                ? fm.replace(per, this.data().trope[per])
+                : fm
           }
           return fm
         } catch (e) {
@@ -234,7 +264,7 @@ export default {
       /**
        * 返回日期对象
        */
-      timeset () {
+      timeset() {
         let bs = this.data().basicUnit
         let ts = this.data().timeset
         for (let per in ts) {
@@ -249,60 +279,63 @@ export default {
        * {minute:3} / {hour:3} / {day:3}
        * @return {[object]}
        */
-      state () {
+      state() {
         let bs = this.data().basicUnit
         if (this.target > bs.year) {
-          return {year: this.count(bs.year)}
+          return { year: this.count(bs.year) }
         }
         if (this.target > bs.month) {
-          return {month: this.count(bs.month)}
+          return { month: this.count(bs.month) }
         }
         if (this.target > bs.day) {
-          return {day: this.count(bs.day)}
+          return { day: this.count(bs.day) }
         }
         if (this.target > bs.hour) {
-          return {hour: this.count(bs.hour)}
+          return { hour: this.count(bs.hour) }
         }
         if (this.target > bs.minute) {
-          return {minute: this.count(bs.minute)}
+          return { minute: this.count(bs.minute) }
         }
-        return {second: this.target}
+        return { second: this.target }
       },
-      _year () {
+      _year() {
         return this.data().timeset.year
       },
-      _month () {
+      _month() {
         return this.data().timeset.month
       },
-      _day () {
+      _day() {
         return this.data().timeset.day
       },
-      _hour () {
+      _hour() {
         return this.data().timeset.hour
       },
-      _minute () {
+      _minute() {
         return this.data().timeset.minute
       },
-      _second () {
+      _second() {
         return this.data().timeset.second
       },
       /**
        * 是否在格林威治时间段
        * @return {Boolean} [description]
        */
-      isGreenwichTime (number) {
-        return number > this.getTime('1970-01-01 00:00:00') && number < this.getTime('2038-01-19 11:14:07')
+      isGreenwichTime(number) {
+        return (
+          number > this.getTime('1970-01-01 00:00:00') &&
+          number < this.getTime('2038-01-19 11:14:07')
+        )
       },
       /**
        * 返回时间戳
        * @return {[number]}
        */
-      toNumber () {
+      toNumber() {
         return this.getTime()
       },
-      end () {
+      end() {
         return this
-      }
+      },
     }).init(target)
   },
   /**
@@ -310,10 +343,10 @@ export default {
    * @param  {[type]} toggle 全局开关
    * @return {[empty function or console]}
    */
-  debug (toggle) {
+  debug(toggle) {
     let emptyFunc = {}
     for (let per in console) {
-      emptyFunc[per] = function () {
+      emptyFunc[per] = function() {
         return
       }
     }
@@ -325,7 +358,7 @@ export default {
    * @argument {[string]}
    * @return {[string]}
    */
-  trim (str) {
+  trim(str) {
     return str.replace(/\s|\xA0/g, '')
   },
   /**
@@ -333,7 +366,7 @@ export default {
    * @argument {[string]}
    * @return {[string]}
    */
-  arrunique (arr) {
+  arrunique(arr) {
     let res = []
     let json = {}
     for (let i = 0; i < arr.length; i++) {
@@ -344,10 +377,10 @@ export default {
     }
     return res
   },
-  objarrunique (arr) {
+  objarrunique(arr) {
     let hash = {}
-    arr = arr.reduce(function (item, next) {
-      hash[next.key] ? '' : hash[next.key] = true && item.push(next)
+    arr = arr.reduce(function(item, next) {
+      hash[next.key] ? '' : (hash[next.key] = true && item.push(next))
       return item
     }, [])
     return arr
@@ -357,7 +390,7 @@ export default {
    * @param {type} words
    * @returns {undefined}
    */
-  getLangTipsText ({langType, localText, InternationalText}) {
+  getLangTipsText({ langType, localText, InternationalText }) {
     if (langType === 'local') {
       return localText
     } else {
@@ -365,11 +398,11 @@ export default {
     }
   },
   /**
-  * @description 添加ajax请求参数
-  * @param formObj from表单和接口参数的键值对
-  * @param param ajax参数键值对
-  */
-  handleGetAjaxParams (formObj, param) {
+   * @description 添加ajax请求参数
+   * @param formObj from表单和接口参数的键值对
+   * @param param ajax参数键值对
+   */
+  handleGetAjaxParams(formObj, param) {
     let resParam = param
     for (let key in formObj) {
       if (formObj[key] !== '' && formObj[key] !== i18n.t('SELECT_ALL')) {
@@ -395,9 +428,9 @@ export default {
     return resParam
   },
   /**
-  * @description 模糊查询通用函数
-  */
-  commonRemote (queryStr, ajaxFn, resetState) {
+   * @description 模糊查询通用函数
+   */
+  commonRemote(queryStr, ajaxFn, resetState) {
     if (queryStr !== '') {
       this.loading = true
       setTimeout(() => {
@@ -412,7 +445,7 @@ export default {
    * 页面是否全屏显示
    * @param {boolean} fullScreen
    */
-  pageFullScreen (fullScreen) {
+  pageFullScreen(fullScreen) {
     let wrap = document.querySelector('.content-wrapper')
     /**
      * .content-wrapper 的DOM未渲染完成时不执行改变style的过程
@@ -431,13 +464,13 @@ export default {
    * 表单下拉框添加默认值“全部”
    * @returns {array}
    */
-  addDefaultSelectVal (array) {
+  addDefaultSelectVal(array) {
     if (array) {
       array.unshift({
         text: i18n.t('SELECT_ALL'),
         name: i18n.t('SELECT_ALL'),
         code: '',
-        id: ''
+        id: '',
       })
     }
     return [
@@ -445,49 +478,67 @@ export default {
         text: i18n.t('SELECT_ALL'),
         name: i18n.t('SELECT_ALL'),
         code: '',
-        id: ''
-      }
+        id: '',
+      },
     ]
   },
   /**
-  * 日志打印
-  * @param {Boolean} showLogger
-  * @param {Function} callback
-  */
-  logger (showLogger, callback) {
+   * 日志打印
+   * @param {Boolean} showLogger
+   * @param {Function} callback
+   */
+  logger(showLogger, callback) {
     if (showLogger === true) {
       callback()
     }
   },
   // 视频下载转
-  downloadFile (fileName, content) {
+  downloadFile(fileName, content) {
     let $a = document.createElement('a')
     $a.setAttribute('href', fileName)
     $a.setAttribute('download', content)
     let evObj = document.createEvent('MouseEvents')
-    evObj.initMouseEvent('click', false, false, window, 0, 0, 0, 0, 0, true, false, true, false, 0, null)
+    evObj.initMouseEvent(
+      'click',
+      false,
+      false,
+      window,
+      0,
+      0,
+      0,
+      0,
+      0,
+      true,
+      false,
+      true,
+      false,
+      0,
+      null
+    )
     $a.dispatchEvent(evObj)
   },
 
   /* 日期格式化 */
-  dateFormatter (timeStamp, formatStr = 'Y-m-d H:i:s') {
+  dateFormatter(timeStamp, formatStr = 'Y-m-d H:i:s') {
     if (timeStamp) {
       return !timeStamp || this.date(timeStamp).format(formatStr)
     } else {
       return '-'
     }
   },
-  dateFormat (timeStamp, formatStr = 'Y-m-d H:i:s') {
+  dateFormat(timeStamp, formatStr = 'Y-m-d H:i:s') {
     if (timeStamp) {
       return this.date(timeStamp).format(formatStr)
     }
   },
   /* 根据code获取数据字典name */
-  getDictionaryNameByCode (dictionaryList, code) {
+  getDictionaryNameByCode(dictionaryList, code) {
     if (code === '') {
       return ''
     } else if (dictionaryList) {
-      let matchedDictionary = dictionaryList.filter(item => item.code === code.toString())
+      let matchedDictionary = dictionaryList.filter(
+        item => item.code === code.toString()
+      )
       if (matchedDictionary.length > 0) {
         return matchedDictionary[0].name
       }
@@ -498,11 +549,11 @@ export default {
   },
 
   // 用于生成uid随机值
-  random () {
+  random() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   },
   // 生成随机字符串"a2aed19f-e962-4a7f-ba7a-8cc74bb6900e"
-  randomString () {
+  randomString() {
     let len = 36
     let str = 'abcdefghijkmnopqrstuwxyz23456789'
     let maxPos = str.length
@@ -517,29 +568,50 @@ export default {
     return pwd
   },
   // 获取uid
-  getUid () {
-    return (this.random() + this.random() + '-' + this.random() + '-' + this.random() + '-' + this.random() + '-' +
-      this.random() + this.random() + this.random())
+  getUid() {
+    return (
+      this.random() +
+      this.random() +
+      '-' +
+      this.random() +
+      '-' +
+      this.random() +
+      '-' +
+      this.random() +
+      '-' +
+      this.random() +
+      this.random() +
+      this.random()
+    )
   },
-  getFileNameFromUrl (url) {
+  getFileNameFromUrl(url) {
     if (url) {
-      return url.split('/').splice(-1).join('')
+      return url
+        .split('/')
+        .splice(-1)
+        .join('')
     }
     return ''
   },
-  getFileExtFromFileName (fileName) {
+  getFileExtFromFileName(fileName) {
     if (fileName) {
-      return fileName.split('.').splice(-1).join('').toLowerCase()
+      return fileName
+        .split('.')
+        .splice(-1)
+        .join('')
+        .toLowerCase()
     }
     return ''
   },
   // 判断是否是连续递增递减数字，或者连续相同数字
-  isContinuityNum (num) {
+  isContinuityNum(num) {
     // 连续相同数字
     if ([...new Set(Array.from(num))].length === 1) {
       return true
       // 数字都不相同，递增或者递减
-    } else if ([...new Set(Array.from(num))].length === Array.from(num).length) {
+    } else if (
+      [...new Set(Array.from(num))].length === Array.from(num).length
+    ) {
       let arr = Array.from(num)
       let arr1 = [...arr]
       arr.reverse()
@@ -551,7 +623,7 @@ export default {
     return false
   },
   // 文件大小单位显示处理
-  handleSize (size) {
+  handleSize(size) {
     size = parseFloat(size)
     if (isNaN(size)) return
     let str = ''
@@ -563,7 +635,7 @@ export default {
     return str
   },
   // 时间选择框控制时间间隔不能超过固定天数
-  timeCheck (param, filedName, days) {
+  timeCheck(param, filedName, days) {
     if (param) {
       let startDate = param[0]
       let endDate = param[1]
@@ -573,7 +645,7 @@ export default {
       if (paramTime > 24 * 3600 * 1000 * days) {
         Message.error({
           message: i18n.t('DATE_INTERVAL_NOT_N_DAYS', [days]),
-          duration: '1000'
+          duration: '1000',
         })
         let arr = filedName.split('.')
         this[arr[0]][arr[1]] = []
@@ -583,86 +655,100 @@ export default {
       }
     }
   },
-  pickerOptions (format) {
+  pickerOptions(format) {
     let status = format === 'yyyy-MM-dd HH:mm:ss' // true 为时间选择 false 为日期选择
     return {
-      disabledDate: (time) => {
+      disabledDate: time => {
         if (status) {
           return time.getTime() > Date.now()
         } else {
-          let yesterday = this.date(new Date(new Date().getTime() - 86400000)).format('y-m-d') + ' ' + '23:59:59'
+          let yesterday =
+            this.date(new Date(new Date().getTime() - 86400000)).format(
+              'y-m-d'
+            ) +
+            ' ' +
+            '23:59:59'
           return time.getTime() > new Date(yesterday).getTime()
         }
       },
-      shortcuts: [{
-        text: i18n.t('CLOUDVIDEOINDEX.finalWeek'),
-        onClick (picker) {
-          let day = status ? 6 : 7
-          const end = new Date()
-          if (!status) {
-            end.setDate(end.getDate() - 1)
-            end.setHours(23)
-            end.setMinutes(59)
-            end.setSeconds(59)
-          }
-          const start = new Date()
-          start.setDate(start.getDate())
-          start.setHours(0)
-          start.setMinutes(0)
-          start.setSeconds(0)
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
-          picker.$emit('pick', [start, end])
-        }
-      }, {
-        text: i18n.t('CLOUDVIDEOINDEX.finalMonth'),
-        onClick (picker) {
-          let day = status ? 29 : 30
-          const end = new Date()
-          if (!status) {
-            end.setDate(end.getDate() - 1)
-            end.setHours(23)
-            end.setMinutes(59)
-            end.setSeconds(59)
-          }
-          const start = new Date()
-          start.setDate(start.getDate())
-          start.setHours(0)
-          start.setMinutes(0)
-          start.setSeconds(0)
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
-          picker.$emit('pick', [start, end])
-        }
-      }, {
-        text: i18n.t('CLOUDVIDEOINDEX.finalThreeMonth'),
-        onClick (picker) {
-          let day = status ? 90 : 91
-          const end = new Date()
-          if (!status) {
-            end.setDate(end.getDate() - 1)
-            end.setHours(23)
-            end.setMinutes(59)
-            end.setSeconds(59)
-          }
-          const start = new Date()
-          start.setDate(start.getDate())
-          start.setHours(0)
-          start.setMinutes(0)
-          start.setSeconds(0)
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
-          picker.$emit('pick', [start, end])
-        }
-      }]
+      shortcuts: [
+        {
+          text: i18n.t('CLOUDVIDEOINDEX.finalWeek'),
+          onClick(picker) {
+            let day = status ? 6 : 7
+            const end = new Date()
+            if (!status) {
+              end.setDate(end.getDate() - 1)
+              end.setHours(23)
+              end.setMinutes(59)
+              end.setSeconds(59)
+            }
+            const start = new Date()
+            start.setDate(start.getDate())
+            start.setHours(0)
+            start.setMinutes(0)
+            start.setSeconds(0)
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
+            picker.$emit('pick', [start, end])
+          },
+        },
+        {
+          text: i18n.t('CLOUDVIDEOINDEX.finalMonth'),
+          onClick(picker) {
+            let day = status ? 29 : 30
+            const end = new Date()
+            if (!status) {
+              end.setDate(end.getDate() - 1)
+              end.setHours(23)
+              end.setMinutes(59)
+              end.setSeconds(59)
+            }
+            const start = new Date()
+            start.setDate(start.getDate())
+            start.setHours(0)
+            start.setMinutes(0)
+            start.setSeconds(0)
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
+            picker.$emit('pick', [start, end])
+          },
+        },
+        {
+          text: i18n.t('CLOUDVIDEOINDEX.finalThreeMonth'),
+          onClick(picker) {
+            let day = status ? 90 : 91
+            const end = new Date()
+            if (!status) {
+              end.setDate(end.getDate() - 1)
+              end.setHours(23)
+              end.setMinutes(59)
+              end.setSeconds(59)
+            }
+            const start = new Date()
+            start.setDate(start.getDate())
+            start.setHours(0)
+            start.setMinutes(0)
+            start.setSeconds(0)
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * day)
+            picker.$emit('pick', [start, end])
+          },
+        },
+      ],
     }
   },
-  treeDataToList (data, key) {
+  treeDataToList(data, key) {
     let list = []
     key = key || 'children'
-    function analysis (data) {
+
+    function analysis(data) {
       if (Object.prototype.toString.call(data) !== '[object Array]') return
       data.forEach(val => {
         let obj = {}
         for (let o in val) {
-          if (o === key && Object.prototype.toString.call(val[o]) === '[object Array]' && JSON.stringify(val[o]) !== '[]') {
+          if (
+            o === key &&
+            Object.prototype.toString.call(val[o]) === '[object Array]' &&
+            JSON.stringify(val[o]) !== '[]'
+          ) {
             analysis(val[o])
           } else {
             if (o !== key) {
@@ -673,18 +759,24 @@ export default {
         list.push(obj)
       })
     }
+
     analysis(data)
     return list
   },
   // filterKeyArr 需要过滤出来的key的集合  filterKey 根据哪个key来过滤 默认id
-  filterTreeDataToList (data, filterKeyArr, key = 'children', filterKey = 'id') {
+  filterTreeDataToList(data, filterKeyArr, key = 'children', filterKey = 'id') {
     let list = []
-    function analysis (data) {
+
+    function analysis(data) {
       if (Object.prototype.toString.call(data) !== '[object Array]') return
       data.forEach(val => {
         let obj = {}
         for (let o in val) {
-          if (o === key && Object.prototype.toString.call(val[o]) === '[object Array]' && JSON.stringify(val[o]) !== '[]') {
+          if (
+            o === key &&
+            Object.prototype.toString.call(val[o]) === '[object Array]' &&
+            JSON.stringify(val[o]) !== '[]'
+          ) {
             analysis(val[o])
           } else {
             if (o !== key) {
@@ -695,11 +787,12 @@ export default {
         if (filterKeyArr.some(v => v === obj[filterKey])) list.push(obj)
       })
     }
+
     analysis(data)
     return list
   },
   // 处理字典 code 转 name
-  codeToName (key, selectList, name, code) {
+  codeToName(key, selectList, name, code) {
     name = name || 'name'
     code = code || 'code'
     let str = ''
@@ -709,7 +802,7 @@ export default {
     return str
   },
   // 获取元素到窗口左边界距离
-  getElementLeft (element) {
+  getElementLeft(element) {
     let actualLeft = element.offsetLeft
     let current = element.offsetParent
 
@@ -720,7 +813,7 @@ export default {
     return actualLeft
   },
   // 获取元素到窗口右 边界距离
-  getElementRight (element) {
+  getElementRight(element) {
     let actualLeft = element.offsetLeft
     let current = element.offsetParent
 
@@ -731,12 +824,12 @@ export default {
     return document.documentElement.clientWidth - actualLeft
   },
   // 滚动条回顶 参数 传id
-  scrollToTop (id) {
+  scrollToTop(id) {
     let el = document.getElementById(id)
     if (el) el.scrollTop = 0
   },
   // 树形图 查找某一项
-  deepQuery (tree, key, id) {
+  deepQuery(tree, key, id) {
     let stark = []
     stark = stark.concat(tree)
     while (stark.length) {
@@ -750,7 +843,7 @@ export default {
     }
   },
   // list某个字段去重
-  listNoRepeat (list, key) {
+  listNoRepeat(list, key) {
     let originArr = list.map(val => val[key])
     let arr = Array.from(new Set(originArr))
     let result = []
@@ -761,20 +854,30 @@ export default {
     return result
   },
   // 返回某个时间间隔的两个时间戳
-  getRangTimeStamp (day) {
-    let now = this.date(new Date(new Date().getTime() - day * 86400000)).format('y-m-d') + ' ' + '00:00:00'
+  getRangTimeStamp(day) {
+    let now =
+      this.date(new Date(new Date().getTime() - day * 86400000)).format(
+        'y-m-d'
+      ) +
+      ' ' +
+      '00:00:00'
     return [new Date(now).getTime(), new Date().getTime()]
   },
   // 返回某个时间间隔的两个时间字符串， 第二个参数为true的话不需要时分秒
-  getRangTime (day, noTime) {
+  getRangTime(day, noTime) {
     let dayOfMs = 86400000
     let format = noTime ? 'y-m-d' : 'y-m-d H:i:s'
-    let now = this.date(new Date(new Date().getTime() - day * dayOfMs)).format('y-m-d') + ' ' + '00:00:00'
+    let now =
+      this.date(new Date(new Date().getTime() - day * dayOfMs)).format(
+        'y-m-d'
+      ) +
+      ' ' +
+      '00:00:00'
     let end = this.date(new Date()).format(format)
     return [now, end]
   },
   // 返回当天时间前面一天的某个时间间隔的两个时间字符串， 第二个参数为true的话需要时分秒
-  getYesterdayRangTime (day, time) {
+  getYesterdayRangTime(day, time) {
     let dayOfMs = 86400000
     let timeNow = ''
     let timeEnd = ''
@@ -782,11 +885,16 @@ export default {
       timeNow = ' ' + '00:00:00'
       timeEnd = ' ' + '23:59:59'
     }
-    let now = this.date(new Date(new Date().getTime() - day * dayOfMs)).format('y-m-d') + timeNow
-    let end = this.date(new Date(new Date().getTime() - dayOfMs)).format('y-m-d') + timeEnd
+    let now =
+      this.date(new Date(new Date().getTime() - day * dayOfMs)).format(
+        'y-m-d'
+      ) + timeNow
+    let end =
+      this.date(new Date(new Date().getTime() - dayOfMs)).format('y-m-d') +
+      timeEnd
     return [now, end]
   },
-  getFirstMenu () {
+  getFirstMenu() {
     const menuList = JSON.parse(sessionStorage.getItem('cvf_menuList'))
     if (menuList && menuList.length > 0) {
       let firstMenu = ''
@@ -796,9 +904,14 @@ export default {
             firstMenu = menu.url.substr(2, menu.url.length)
             return true
           } else if (menu.children && menu.children.length > 0) {
-            let childrenMenu = menu.children.filter(child => child.url && child.url.length > 0)
+            let childrenMenu = menu.children.filter(
+              child => child.url && child.url.length > 0
+            )
             if (childrenMenu && childrenMenu.length > 0) {
-              firstMenu = childrenMenu[0].url.substr(2, childrenMenu[0].url.length)
+              firstMenu = childrenMenu[0].url.substr(
+                2,
+                childrenMenu[0].url.length
+              )
               return true
             }
           }
@@ -807,11 +920,14 @@ export default {
       return firstMenu
     }
   },
-  arrDeepCopy (source) {
+  arrDeepCopy(source) {
     let sourceCopy = []
     for (let item in source) {
-      sourceCopy[item] = typeof source[item] === 'object' ? this.arrDeepCopy(source[item]) : source[item]
+      sourceCopy[item] =
+        typeof source[item] === 'object'
+          ? this.arrDeepCopy(source[item])
+          : source[item]
     }
     return sourceCopy
-  }
+  },
 }

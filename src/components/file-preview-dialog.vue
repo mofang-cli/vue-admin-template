@@ -37,7 +37,7 @@
 
 <script>
   import axios from 'axios'
-  import { codemirror } from 'vue-codemirror'
+  import {codemirror} from 'vue-codemirror'
   import 'codemirror/lib/codemirror.css'
   import 'codemirror/mode/xml/xml.js'
   import 'codemirror/addon/selection/active-line.js'
@@ -127,10 +127,11 @@
   }
 </script>
 <style lang="scss">
-  .file-preview-dialog .el-dialog__header .el-dialog__headerbtn{
+  .file-preview-dialog .el-dialog__header .el-dialog__headerbtn {
     display: none;
   }
-  .file-preview-dialog, .file-preview-dialog-full-screen{
+
+  .file-preview-dialog, .file-preview-dialog-full-screen {
     .file-preview-title {
       display: flex;
       align-items: center;
@@ -157,12 +158,15 @@
       /*height: -webkit-fill-available;*/
     }
   }
+
   .file-preview-dialog-full-screen {
     width: 100%;
   }
+
   .CodeMirror-linenumber {
     font-size: 16px;
   }
+
   .CodeMirror pre {
     line-height: 16px;
     font-size: 16px;

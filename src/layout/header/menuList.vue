@@ -28,6 +28,7 @@
 
 <script>
   import {mapState} from 'vuex'
+
   export default {
     name: 'menuList',
     created () {
@@ -35,6 +36,7 @@
     },
     data () {
       return {
+        test: {haha: ''},
         menuList: [
           {
             'name': 'Module1',
@@ -47,12 +49,12 @@
               {
                 'name': 'page1',
                 'sign': 'page1',
-                'url': '/module2/page1',
+                'url': '/module2/page1'
               },
               {
                 'name': 'page2',
                 'sign': 'page2',
-                'url': '/module2/page1',
+                'url': '/module2/page1'
               }
             ],
             'name': 'Module2',
@@ -70,8 +72,7 @@
     },
     mounted () {
     },
-    watch: {
-    },
+    watch: {},
     methods: {
       // 判断是否存在子集
       hasChild (obj, key = 'children') {
@@ -104,13 +105,13 @@
           }
         })
         return arr
-      },
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .menu{
+  .menu {
     width: 100%;
     height: 100%;
     box-sizing: border-box;

@@ -67,3 +67,8 @@ vue2 + vuex + vue-router + axios + webpack + ES5/6/7 + scss
 
 
 ```
+
+## prettier 格式化代码
+
+webstorm 配置如下：
+https://prettier.io/docs/en/webstorm.html

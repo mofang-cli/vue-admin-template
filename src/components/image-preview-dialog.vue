@@ -1,12 +1,14 @@
 <template>
-  <el-dialog :before-close="closeThisDialog" custom-class="image-preview-dialog" :visible.sync="visible" :fullscreen="isFullScreen" width="680px">
+  <el-dialog :before-close="closeThisDialog" custom-class="image-preview-dialog" :visible.sync="visible"
+             :fullscreen="isFullScreen" width="680px">
     <div slot="title" class="image-preview-title">
       <span>{{$t('PREVIEW_IMAGE')}}</span>
       <span>
         <i v-if="bindVideo" class="icon iconfont icon-ic-livevideo" @click="showVideo" :title="$t('RELATED_VIDEO')"></i>
         <i class="icon iconfont icon-ic-loading" @click="downImage" :title="$t('DOWN_IMAGE')"></i>
         <i v-if="isFullScreen" class="icon iconfont icon-ic-smallscreen" @click="changeFullScreen"></i>
-        <i v-else class="icon iconfont icon-ic-fullscreen" @click="changeFullScreen" :title="$t('CLOUDVIDEOINDEX.full_screen')"></i>
+        <i v-else class="icon iconfont icon-ic-fullscreen" @click="changeFullScreen"
+           :title="$t('CLOUDVIDEOINDEX.full_screen')"></i>
         <i class="icon iconfont icon-ic-delete1" @click="closeThisDialog"></i>
       </span>
     </div>
@@ -96,10 +98,11 @@
   }
 </script>
 <style lang="scss">
-  .image-preview-dialog .el-dialog__header .el-dialog__headerbtn{
+  .image-preview-dialog .el-dialog__header .el-dialog__headerbtn {
     display: none;
   }
-  .image-preview-dialog, .image-preview-dialog-full-screen{
+
+  .image-preview-dialog, .image-preview-dialog-full-screen {
     .image-preview-title {
       display: flex;
       align-items: center;
@@ -142,6 +145,7 @@
       /*height: -webkit-fill-available;*/
     }
   }
+
   .image-preview-dialog-full-screen {
     width: 100%;
   }

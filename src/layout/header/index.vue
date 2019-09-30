@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrapper">
     <div class="header">
-      <logo @toHome="toHome" />
+      <logo @toHome="toHome"/>
       <menuList ref="menuList"></menuList>
     </div>
     <theme-picker
@@ -17,6 +17,7 @@
   import ThemePicker from '@/components/theme-picker'
   import menuList from './menuList'
   import logo from './logo'
+
   export default {
     name: 'headerdiv',
     components: {

@@ -14,21 +14,17 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'contentdiv',
-  data () {
-    return {
-    }
-  },
-  created () {
-  },
-  mounted () {
-  },
-  watch: {
-  },
-  computed: {
-  },
-  methods: {
+  export default {
+    name: 'contentdiv',
+    data () {
+      return {}
+    },
+    created () {
+    },
+    mounted () {
+    },
+    watch: {},
+    computed: {},
+    methods: {}
   }
-}
 </script>

@@ -100,11 +100,11 @@
       </template>
       <el-form-item style="float: right" class="last">
         <div style="float: right;">
-          <el-button type="primary"  @click="search()">
+          <el-button type="primary" @click="search()">
             <i class="icon iconfont icon-ic-search"></i>
             {{$t('SEARCH')}}
           </el-button>
-          <el-button @click="reset" >{{$t('RESET')}}</el-button>
+          <el-button @click="reset">{{$t('RESET')}}</el-button>
           <slot name="button"></slot>
           <el-button @click="showSeniorSearch" class="senior-search" v-show="searchOptions.length + slots > key">
             {{$t('SENIORSEARCH')}}
@@ -161,8 +161,7 @@
    * */
   export default {
     name: 'searchBar',
-    components: {
-    },
+    components: {},
     props: {
       searchOptions: {
         type: Array,
@@ -173,7 +172,9 @@
       },
       value: {
         type: Object,
-        default: () => { return {} }
+        default: () => {
+          return {}
+        }
       }
     },
     created () {
@@ -379,7 +380,9 @@
       // 恢复默认值 (弹窗之类的组件需要主动调用一下)
       recover () {
         let obj = {}
-        this.searchOptions.forEach(v => { obj[v.value] = v.defaultValue || '' })
+        this.searchOptions.forEach(v => {
+          obj[v.value] = v.defaultValue || ''
+        })
         this.listQuery = {...obj}
         this.handlePath()
       },

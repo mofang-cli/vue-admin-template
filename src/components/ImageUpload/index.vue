@@ -1,6 +1,7 @@
 <template>
   <div class="image-upload-wrapper">
-    <input type="file" ref="filesSelect" @change="filesSelected" style="display:none" accept="image/png, image/jpg, image/jpeg"/>
+    <input type="file" ref="filesSelect" @change="filesSelected" style="display:none"
+           accept="image/png, image/jpg, image/jpeg"/>
     <div v-if="fileList.length > 0" class="el-upload-list el-upload-list--picture-card">
       <div v-for="(file, index) in fileList" :tabindex="index" class="el-upload-list__item is-success">
         <img :src="file.url" alt="" class="el-upload-list__item-thumbnail">
@@ -31,8 +32,8 @@
       </div>
     </div>
     <!--<div v-if="fileList.length < limit" class="upload-btn" @click="handleClickUploadBtn">-->
-      <!--<i class="el-icon-plus avatar-uploader-icon"></i>-->
-      <!--<span>上传</span>-->
+    <!--<i class="el-icon-plus avatar-uploader-icon"></i>-->
+    <!--<span>上传</span>-->
     <!--</div>-->
     <span class="label" v-if="label">{{label}}</span>
   </div>
@@ -105,8 +106,8 @@
               this.onError(res.data.message)
             }
           }).catch(error => {
-            this.onError(error)
-          })
+          this.onError(error)
+        })
       }
     }
   }

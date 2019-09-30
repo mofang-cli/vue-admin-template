@@ -8,6 +8,7 @@
 
 <script>
   import logoSrc from '@/assets/images/logo.png'
+
   export default {
     name: 'logo',
     data () {

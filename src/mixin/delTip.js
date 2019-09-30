@@ -1,6 +1,6 @@
 // 删除提示通用方法
 export const delTip = {
-  data () {
+  data() {
     return {}
   },
   methods: {
@@ -10,7 +10,7 @@ export const delTip = {
      *  title 删除框的标题 非必填 默认 删除
      *  message 提示信息 非必填 默认 你确定要将此设备立即删除吗？
      * */
-    commonDel (fn, param, title, message) {
+    commonDel(fn, param, title, message) {
       if (!fn) return
       title = title || this.$t('DELETE')
       message = message || this.$t('SURE_DELETE')
@@ -23,20 +23,24 @@ export const delTip = {
           if (action === 'confirm') {
             instance.confirmButtonLoading = true
             instance.confirmButtonText = this.$t('EXECUTEING')
-            fn(param).then(() => {
-              instance.confirmButtonLoading = false
-              instance.confirmButtonText = this.$t('CONTINUE')
-              done()
-            }).catch(err => {
-              console.error(err)
-              instance.confirmButtonLoading = false
-              instance.confirmButtonText = this.$t('CONTINUE')
-            })
+            fn(param)
+              .then(() => {
+                instance.confirmButtonLoading = false
+                instance.confirmButtonText = this.$t('CONTINUE')
+                done()
+              })
+              .catch(err => {
+                console.error(err)
+                instance.confirmButtonLoading = false
+                instance.confirmButtonText = this.$t('CONTINUE')
+              })
           } else {
             done()
           }
-        }
-      }).then(() => {}).catch(() => {})
-    }
-  }
+        },
+      })
+        .then(() => {})
+        .catch(() => {})
+    },
+  },
 }
