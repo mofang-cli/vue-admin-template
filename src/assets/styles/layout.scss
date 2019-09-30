@@ -6,7 +6,7 @@
   .header{
     min-width: 1280px;
     height: 64px;
-    background-color: #0e4aaa;
+    background-color: $--theme-color-menu;
     padding: 0 10px 0 0;
     box-sizing: border-box;
     display: flex;
@@ -62,7 +62,7 @@
             cursor:pointer;
           }
           .breadcrumb-active {
-            color: #1D66DC;
+            color: $--theme-color-menu;
             cursor: default;
             pointer-events: none;
           }

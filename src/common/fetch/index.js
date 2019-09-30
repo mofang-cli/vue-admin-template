@@ -1,6 +1,7 @@
 import {Message} from 'element-ui'
 import axios from 'axios'
 import store from '@/store/store'
+import i18n from '../../lang'
 
 // axios.defaults.baseURL = baseUrl
 axios.defaults.withCredentials = true
@@ -26,14 +27,13 @@ axios.interceptors.response.use(
     return response.data
   },
   function (error) {
-    if (error.toString().startsWith('Network Error')) {
-      Message.error('网络异常，请检查当前互联网状态')
+    // 对请求错误做些什么
+    if (error.toString().startsWith('Error: Network Error')) {
+      Message.error({message: i18n.t('NETWORK_ERROR')})
     } else if (error.toString().startsWith('Error: Request failed')) {
-      Message.error('接口异常')
+      Message.error({message: i18n.t('REQUEST_FAILED')})
     } else if (error.toString() === 'Cancel') {
       // 取消请求不做处理
-    } else {
-      console.log(error.toString())
     }
   }
 )
