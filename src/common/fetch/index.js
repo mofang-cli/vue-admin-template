@@ -1,7 +1,6 @@
-import {Message} from 'element-ui'
+import { Message } from 'element-ui'
 import axios from 'axios'
 import store from '@/store/store'
-import i18n from '../../lang'
 
 // axios.defaults.baseURL = baseUrl
 axios.defaults.withCredentials = true
@@ -10,7 +9,7 @@ axios.interceptors.request.use(
   config => {
     config.headers = {
       'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     }
     if (config.method === 'delete' || config.method === 'get') {
       config.params = config.data
@@ -23,23 +22,25 @@ axios.interceptors.request.use(
 )
 
 axios.interceptors.response.use(
-  function (response) {
+  function(response) {
     return response.data
   },
-  function (error) {
-    // 对请求错误做些什么
+  function(error) {
     if (error.toString().startsWith('Error: Network Error')) {
-      Message.error({message: i18n.t('NETWORK_ERROR')})
+      Message.error('网络异常，请检查当前互联网状态')
     } else if (error.toString().startsWith('Error: Request failed')) {
-      Message.error({message: i18n.t('REQUEST_FAILED')})
+      Message.error('接口异常')
     } else if (error.toString() === 'Cancel') {
       // 取消请求不做处理
+    } else {
+      console.log(error.toString())
     }
+    return Promise.reject(error)
   }
 )
 
 let CancelToken = axios.CancelToken
-export default function fetch (url, method, params) {
+export default function fetch(url, method, params) {
   return new Promise((resolve, reject) => {
     axios({
       url: url,
@@ -47,7 +48,7 @@ export default function fetch (url, method, params) {
       data: params,
       cancelToken: new CancelToken(c => {
         store.commit('setCancelAxios', c)
-      })
+      }),
     })
       .then(response => {
         // 异常请求 status !== 200, 统一弹窗提醒，业务代码无需处理
@@ -60,8 +61,8 @@ export default function fetch (url, method, params) {
         }
       })
       .catch(error => {
-        reject(error)
         console.log(error)
+        reject(error)
       })
   })
 }

@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <div class="content-wrapper">
-      <div class="breadcrumb">
-        面包屑
-      </div>
+      <Breadcrumb></Breadcrumb>
       <div class="contentdiv">
         <router-view></router-view>
       </div>
@@ -14,8 +12,12 @@
   </div>
 </template>
 <script>
+  import Breadcrumb from '@/components/Breadcrumb'
   export default {
     name: 'contentdiv',
+    components: {
+      Breadcrumb,
+    },
     data () {
       return {}
     },

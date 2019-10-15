@@ -1,10 +1,5 @@
 # vue-admin-template
 
-> 这个项目是作为vue项目开发的一个公用项目模板
-> 这里包括了项目开发所需准备的初步准备工作
-> 把开发人员在准备要开始一个项目时，只要从svn上把该项目模板下载到本地
-> 然后复制一份并重命名为自己即将要着手对项目名称后，开始页面和逻辑部分的开发即可
-
 ## 安装步骤 ##
 
   npm install
@@ -51,7 +46,9 @@ vue2 + vuex + vue-router + axios + webpack + ES5/6/7 + scss
 │   │   │   └── login.vue                       // 登录页
 │   │   └── home.vue                            // 项目页面总布局
 │   ├── router
-│   │   └── router.js                           // 路由配置
+│   │   └── index.js                            // 基础路由配置
+│   │   └── routes.js                           // 业务路由配置
+│   │   └── permission.js                       // 路由权限控制
 │   ├── store                                   // vuex的状态管理
 │   │   ├── action.js                           // 配置actions
 │   │   ├── getters.js                          // 配置getters
@@ -66,6 +63,39 @@ vue2 + vuex + vue-router + axios + webpack + ES5/6/7 + scss
 ├── index.html                                  // 入口html文件
 
 
+```
+## 权限控制
+
+* 页面级权限
+
+  Menu、面包屑都是根据路由产生，只需修改router/permission.js，根据角色和资源对路由进行过滤即可
+  
+## 父子路由
+
+```javascript
+
+const routes = [
+  {
+    path: '/a',
+    name: 'A',
+    component: Layout,
+    meta: { permission: 'A', showMenu: true, breadcrumb: true, icon: '' },
+    children: [
+      {
+        path: '/',
+        name: 'A',
+        component: () => import(/* webpackChunkName: "a" */ '@/page/a'),
+        meta: { permission: 'A' },
+      },
+      {
+        path: 'b',
+        name: 'B',
+        component: () => import(/* webpackChunkName: "a" */ '@/page/b'),
+        meta: { permission: 'B' },
+      },
+    ],
+  },
+]
 ```
 
 ## prettier 格式化代码

@@ -5,19 +5,9 @@ import Error401 from '@/page/error/error401'
 import Error403 from '@/page/error/error403'
 import Error404 from '@/page/error/error404'
 import Layout from '@/layout/index'
-import Test from '@/page/test'
+import routes from './routes'
 
 Vue.use(Router)
-export const getRoutes = function() {
-  return [
-    {
-      path: '/test',
-      name: 'Test页面',
-      component: Test,
-      meta: { requireAuth: true, sign: 'TEST_PAGE', showMenu: true },
-    },
-  ]
-}
 
 const getRouter = function(defaultRouter = '') {
   const router = new Router({
@@ -46,8 +36,8 @@ const getRouter = function(defaultRouter = '') {
         path: '/',
         component: Layout,
         redirect: defaultRouter,
-        children: getRoutes(defaultRouter),
       },
+      ...routes,
     ],
   })
   /* eslint-disable no-new */

@@ -1,14 +1,11 @@
 <template>
   <div>
-    Test
+    B
   </div>
 </template>
 
 <script>
   export default {
-    data () {
-      return {}
-    }
   }
 </script>
 
